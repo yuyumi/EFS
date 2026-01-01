@@ -5,7 +5,7 @@ A research framework for Ensembled Forward Selection algorithms with comprehensi
 ## Project Structure
 
 ```
-RFS/
+EFS/
 ├── scripts/              # Execution scripts
 │   ├── run_simulation.py
 │   ├── plotting_runner.py
