@@ -1,0 +1,83 @@
+{
+    "simulation": {
+        "n_sim": 100,
+        "base_seed": 42,
+        "use_validation_set": false,
+        "sigma": {
+            "type": "sigma",
+            "style": "list",
+            "values": [0.5, 1.0, 1.5, 2.0, 3.0]
+        }
+    },
+    "data": {
+        "n_predictors": 100,
+        "n_train": 500,
+        "n_val": 200,
+        "n_test": 300,
+        "signal_proportion": 0.1,
+        "covariance_type": "banded",
+        "generator_type": "exact",
+        "generator_params": {
+            "eta": 0.5
+        },
+        "block_params": {
+            "block_size": 20,
+            "within_correlation": 0.7,
+            "fixed_design": false
+        },
+        "banded_params": {
+            "rho": 0.5,
+            "fixed_design": false
+        }
+    },
+    "model": {
+        "method": "fs",
+        "k_max": 25,
+        "m_grid": {
+            "type": "geometric",
+            "params": {
+                "base": 1.5,
+                "num_points": 8
+            }
+        },
+        "efscv": {
+            "n_estimators": 500,
+            "n_resample_iter": 10
+        },
+        "bagged_fs": {
+            "n_estimators": 500
+        },
+        "smeared_fs": {
+            "n_estimators": 500,
+            "param_grid": {
+                "noise_scale": [0.1, 0.5, 1.0, 2.0, 5.0]
+            }
+        },
+        "baseline": {
+            "cv": 5,
+            "lasso": {
+                "alpha_min": -10,
+                "alpha_max": 1,
+                "n_alphas": 100
+            },
+            "ridge": {
+                "alpha_min": -10,
+                "alpha_max": 10,
+                "n_alphas": 100
+            },
+            "elastic_net": {
+                "alpha_min": -10,
+                "alpha_max": 1,
+                "n_alphas": 20,
+                "l1_ratios": [0.1, 0.3, 0.5, 0.7, 0.9, 0.95, 0.99, 1.0]
+            }
+        }
+    },
+    "execution": {
+        "parallel": true,
+        "n_workers": null
+    },
+    "output": {
+        "save_path": "results/raw/"
+    }
+}
